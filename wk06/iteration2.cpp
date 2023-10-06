@@ -15,4 +15,9 @@ using namespace std;
 void printEverySecond(const list<int>& lst)
 {
     // ADD YOUR CODE HERE
+    for (auto it = lst.begin(); it != lst.end(); ++it) {
+        cout << *it << " ";
+        ++it;
+    }
+
 }
