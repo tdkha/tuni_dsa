@@ -16,7 +16,6 @@ void printEverySecond(const list<int>& lst)
 {
     // ADD YOUR CODE HERE
     int dis = std::distance(lst.begin(), lst.end())/2;
-    std::cout << dis << std::endl;
     
     auto it = lst.begin();
     for(int i = 0; i <= dis; ++i) {
