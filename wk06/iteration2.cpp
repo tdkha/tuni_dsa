@@ -15,13 +15,13 @@ using namespace std;
 void printEverySecond(const list<int>& lst)
 {
     // ADD YOUR CODE HERE
-    int dis = std::distance(lst.begin(), lst.end())/2;
-    
     auto it = lst.begin();
-    for(int i = 0; i <= dis; ++i) {
+    while (it != lst.end()) {
         std::cout << *it << " ";
         ++it;
-        ++it;
+        if (it != lst.end()) {
+            ++it;
+        }
     }
     std::cout << std::endl;
 
