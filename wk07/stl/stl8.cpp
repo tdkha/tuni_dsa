@@ -15,7 +15,10 @@ using namespace std;
  */
 int removeLessThan(std::vector<int>& v, int limit)
 {
+    if(v.size() == 0)
+        return EXIT_FAILURE;
+
     v.erase(std::remove_if(v.begin(), v.end(), [limit](int a) { return a < limit; }), v.end());
-    return EXIT_FAILURE;
+    return EXIT_SUCCESS;
 }
 

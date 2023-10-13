@@ -15,7 +15,9 @@ using namespace std;
  */
 int sortAsc(std::vector<int>& v)
 {
+    if(v.size() == 0)
+        return EXIT_FAILURE;
     std::sort(v.begin(), v.end(),[](int a, int b) { return a < b; });
-    return EXIT_FAILURE;
+    return EXIT_SUCCESS;
 }
 
