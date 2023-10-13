@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 /**
  * @brief Arrange vector in three subsequent sections:
  *        - those divisible by three (asc order)
@@ -15,11 +14,16 @@ using namespace std;
  * @param v vector to be sorted
  * @return int EXIT_SUCCESS if everything went OK, EXIT_FAILURE otherwise
  */
-int sortMod3(std::vector<int>& v)
+int sortMod3(std::vector<int> &v)
 {
-    if(v.size() == 0)
+    try
+    {
+        std::sort(v.begin(), v.end(), [](int a, int b)
+                  { return a % 3 < b % 3; });
+        return EXIT_SUCCESS;
+    }
+    catch (...)
+    {
         return EXIT_FAILURE;
-    std::sort(v.begin(), v.end(),[](int a, int b) { return a % 3 < b % 3; });
-    return EXIT_SUCCESS;
+    }
 }
-
