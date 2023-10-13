@@ -17,6 +17,7 @@ using namespace std;
  */
 int sortMod3(std::vector<int>& v)
 {
+    std::sort(v.begin(), v.end(),[](int a, int b) { return a % 3 < b % 3; });
     return EXIT_FAILURE;
 }
 

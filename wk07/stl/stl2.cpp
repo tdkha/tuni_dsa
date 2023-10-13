@@ -15,6 +15,7 @@ using namespace std;
  */
 int sortDesc(std::vector<int>& v)
 {
+    std::sort(v.begin(), v.end(),[](int a, int b) { return a > b; });
     return EXIT_FAILURE;
 }
 
