@@ -19,7 +19,7 @@ int sortMod3(std::vector<int> &v)
     try
     {
         std::sort(v.begin(), v.end(), [](int a, int b)
-                  { return a % 3 < b % 3; });
+                  { return (a % 3 == b % 3) ? a < b : a % 3 < b % 3; });
         return EXIT_SUCCESS;
     }
     catch (...)
