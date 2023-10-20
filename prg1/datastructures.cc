@@ -1,7 +1,6 @@
 // Datastructures.cc
-//
-// Student name:
-// Student email:
+// Student name: Tieu Duy Kha
+// Student email: duykha.tieu@tuni.fi
 // Student number:
 
 #include "datastructures.hh"
@@ -41,38 +40,68 @@ Datastructures::~Datastructures()
 unsigned int Datastructures::get_affiliation_count()
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_affiliation_count()");
+    //throw NotImplemented("get_affiliation_count()");
+    return affiliations_.size();
 }
 
 void Datastructures::clear_all()
 {
     // Replace the line below with your implementation
-    throw NotImplemented("clear_all()");
+
+    //throw NotImplemented("clear_all()");
+    affiliations_.clear();
+    publications_.clear();
 }
 
 std::vector<AffiliationID> Datastructures::get_all_affiliations()
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_all_affiliations()");
+
+    //throw NotImplemented("get_all_affiliations()");
+    std::vector<AffiliationID> ids;
+    for (const auto& affiliation : affiliations_) {
+        ids.push_back(affiliation.first);
+    }
+    return ids;
 }
 
-bool Datastructures::add_affiliation(AffiliationID /*id*/, const Name &/*name*/, Coord /*xy*/)
+bool Datastructures::add_affiliation(AffiliationID id, const Name &name, Coord xy)
 {
     // Replace the line below with your implementation
-    throw NotImplemented("add_affiliation()");
+    //throw NotImplemented("add_affiliation()");
+
+    if (affiliations_.find(id) != affiliations_.end()) {
+        return false;  // Affiliation with this ID already exists
+    }
+
+    Affiliation new_affiliation = {id, name, xy};
+    affiliations_.emplace(id, new_affiliation);
+
+    return true;
 }
 
-Name Datastructures::get_affiliation_name(AffiliationID /*id*/)
+Name Datastructures::get_affiliation_name(AffiliationID id)
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_affiliation_name()");
+    //throw NotImplemented("get_affiliation_name()");
+    auto it = affiliations_.find(id);
+    if( it != affiliations_.end()){
+        return it->second.name;
+    }
+    return NO_NAME;
 }
 
-Coord Datastructures::get_affiliation_coord(AffiliationID /*id*/)
+Coord Datastructures::get_affiliation_coord(AffiliationID id)
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_affiliation_coord()");
+    //throw NotImplemented("get_affiliation_coord()");
+    auto it = affiliations_.find(id);
+    if( it != affiliations_.end()){
+        return it->second.xy;
+    }
+    return NO_COORD;
 }
+
 
 std::vector<AffiliationID> Datastructures::get_affiliations_alphabetically()
 {

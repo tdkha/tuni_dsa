@@ -1,7 +1,6 @@
 // Datastructures.hh
-//
-// Student name:
-// Student email:
+// Student name: Tieu Duy Kha
+// Student email: duykha.tieu@tuni.fi
 // Student number:
 
 #ifndef DATASTRUCTURES_HH
@@ -14,6 +13,12 @@
 #include <limits>
 #include <functional>
 #include <exception>
+
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
+
 
 // Types for IDs
 using AffiliationID = std::string;
@@ -88,6 +93,29 @@ public:
 private:
     std::string msg_;
 };
+
+
+//-----------------------------------------------
+// STRUCT AFFILIATION
+//-----------------------------------------------
+struct Affiliation{
+    AffiliationID id;
+    Name name;
+    Coord xy;
+};
+//-----------------------------------------------
+// STRUCT PUBLICATION
+//-----------------------------------------------
+struct Publication{
+    PublicationID id;
+    Name name;
+    Year year;
+    std::vector<AffiliationID> affiliations;
+    std::unordered_set<PublicationID> references; // Quick lookup
+    Publication* parent = nullptr;  // Pointer to parent publication
+    std::vector<Publication*> children;  // Pointers to child publications | Quick change
+};
+
 
 // This is the class you are supposed to implement
 
@@ -216,7 +244,8 @@ public:
 
 
 private:
-
+    std::unordered_map<AffiliationID, Affiliation> affiliations_;
+    std::unordered_map<PublicationID, Publication> publications_;
 };
 
 #endif // DATASTRUCTURES_HH
