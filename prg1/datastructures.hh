@@ -20,6 +20,7 @@
 #include <unordered_map>
 
 
+#include <algorithm>
 // Types for IDs
 using AffiliationID = std::string;
 using PublicationID = unsigned long long int;
@@ -133,26 +134,26 @@ public:
     // Short rationale for estimate:
     void clear_all();
 
-    // Estimate of performance:
+    // Estimate of performance: O(N)
     // Short rationale for estimate:
     std::vector<AffiliationID> get_all_affiliations();
 
-    // Estimate of performance:
+    // Estimate of performance: O(Nlog(N))
     // Short rationale for estimate:
     bool add_affiliation(AffiliationID id, Name const& name, Coord xy);
 
-    // Estimate of performance:
+    // Estimate of performance: O(1)
     // Short rationale for estimate:
     Name get_affiliation_name(AffiliationID id);
 
-    // Estimate of performance:
+    // Estimate of performance: O(1)
     // Short rationale for estimate:
     Coord get_affiliation_coord(AffiliationID id);
 
 
     // We recommend you implement the operations below only after implementing the ones above
 
-    // Estimate of performance:
+    // Estimate of performance: O(N)
     // Short rationale for estimate:
     std::vector<AffiliationID> get_affiliations_alphabetically();
 
@@ -246,6 +247,7 @@ public:
 private:
     std::unordered_map<AffiliationID, Affiliation> affiliations_;
     std::unordered_map<PublicationID, Publication> publications_;
+    std::multimap<Name , AffiliationID> sorted_name_affiliations_;
 };
 
 #endif // DATASTRUCTURES_HH

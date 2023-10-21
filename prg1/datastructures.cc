@@ -70,13 +70,13 @@ bool Datastructures::add_affiliation(AffiliationID id, const Name &name, Coord x
     // Replace the line below with your implementation
     //throw NotImplemented("add_affiliation()");
 
-    if (affiliations_.find(id) != affiliations_.end()) {
+    if (affiliations_.find(id) != affiliations_.end()) { //O(1)
         return false;  // Affiliation with this ID already exists
     }
 
     Affiliation new_affiliation = {id, name, xy};
-    affiliations_.emplace(id, new_affiliation);
-
+    affiliations_.emplace(id, new_affiliation); //O(1)
+    sorted_name_affiliations_.emplace(name, id);//O(Nlog(N))
     return true;
 }
 
@@ -84,7 +84,7 @@ Name Datastructures::get_affiliation_name(AffiliationID id)
 {
     // Replace the line below with your implementation
     //throw NotImplemented("get_affiliation_name()");
-    auto it = affiliations_.find(id);
+    auto it = affiliations_.find(id); //O(1)
     if( it != affiliations_.end()){
         return it->second.name;
     }
@@ -95,7 +95,7 @@ Coord Datastructures::get_affiliation_coord(AffiliationID id)
 {
     // Replace the line below with your implementation
     //throw NotImplemented("get_affiliation_coord()");
-    auto it = affiliations_.find(id);
+    auto it = affiliations_.find(id); //O(1)
     if( it != affiliations_.end()){
         return it->second.xy;
     }
@@ -106,13 +106,21 @@ Coord Datastructures::get_affiliation_coord(AffiliationID id)
 std::vector<AffiliationID> Datastructures::get_affiliations_alphabetically()
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_affiliations_alphabetically()");
+    //throw NotImplemented("get_affiliations_alphabetically()");
+    std::vector<AffiliationID> ids;
+    for (const auto& affiliation : sorted_name_affiliations_) {    // O(N)
+        ids.push_back(affiliation.first);
+    }
+    return ids;
 }
 
 std::vector<AffiliationID> Datastructures::get_affiliations_distance_increasing()
 {
     // Replace the line below with your implementation
-    throw NotImplemented("get_affiliations_distance_increasing()");
+    //throw NotImplemented("get_affiliations_distance_increasing()");
+    std::vector<AffiliationID> result;
+
+    return result;
 }
 
 AffiliationID Datastructures::find_affiliation_with_coord(Coord /*xy*/)
